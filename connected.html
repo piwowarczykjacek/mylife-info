@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Life — Dysk Google</title>
+<style>body{font:17px/1.6 system-ui,sans-serif;max-width:640px;margin:48px auto;padding:0 16px;color:#222}</style>
+</head>
+<body>
+<h1 id="title">My Life</h1>
+<p id="text"></p>
+<p><a href="mylife://google-connected">Wróć do My Life</a></p>
+<script>
+  const result = new URLSearchParams(location.search).get('google');
+  const messages = {
+    connected: ['✅ Połączono z Dyskiem Google', 'Możesz zamknąć tę kartę i wrócić do My Life.'],
+    cancelled: ['Anulowano', 'Dysk Google nie został połączony. Możesz zamknąć tę kartę.'],
+  };
+  const [title, text] = messages[result] ||
+    ['Nie udało się połączyć', 'Zamknij tę kartę i spróbuj ponownie w My Life.'];
+  document.getElementById('title').textContent = title;
+  document.getElementById('text').textContent = text;
+</script>
+</body>
+</html>
