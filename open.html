@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Life — otwórz</title>
+<style>body{font:17px/1.6 system-ui,sans-serif;max-width:640px;margin:48px auto;padding:0 16px;color:#222}</style>
+</head>
+<body>
+<h1>My Life</h1>
+<p id="text">Otwieram w My Life…</p>
+<p><a id="link" href="#">Otwórz w My Life</a></p>
+<script>
+  // Only a note id is accepted: this page cannot be used to send anyone elsewhere.
+  const id = new URLSearchParams(location.search).get('note') || '';
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
+    const target = 'mylife://note/' + id;
+    document.getElementById('link').href = target;
+    location.href = target;
+  } else {
+    document.getElementById('text').textContent = 'Nieprawidłowy link.';
+    document.getElementById('link').remove();
+  }
+</script>
+</body>
+</html>
